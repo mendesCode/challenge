@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Postagem;
 
 class PublicController extends Controller
 {
@@ -12,9 +12,7 @@ class PublicController extends Controller
      * @return void
      */
     public function __construct()
-    {
-        
-    }
+    {}
 
     /**
      * Show the application dashboard.
@@ -23,11 +21,15 @@ class PublicController extends Controller
      */
     public function index()
     {
-        return view('public');
+        $posts = Postagem::all()->where('ativa', 'S');
+
+        return view('public', ['posts' => $posts]);
     }
 
-    public function postagem()
+    public function postagem($id)
     {
-        return view('public_post');
+        $post = Postagem::where('id', $id)->where('ativa', 'S')->firstOrFail();
+
+        return view('public_post', ['post' => $post]);
     }
 }

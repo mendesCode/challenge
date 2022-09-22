@@ -2,24 +2,36 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row d-flex justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Postagens</div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <p class="m-0">Postagens</p>
+                </div>
+            </div>
 
-                <div class="card-body">
-                    <b>|| Adicione aqui as postagens ativas ||</b>
+            @foreach ($posts as $post)
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card rounded-lg border-0 shadow">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/posts/' . $post->imagem) }}" alt="{{ $post->titulo }}">
+                                    </div>
 
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Título</h5>
-                            <p class="card-text">Descrição</p>
-                            <a href="{{ URL::to('postagem') }}" class="btn btn-primary">Abrir postagem</a>
+                                    <div class="col-md-9">
+                                        <a href="{{ route('postagem', $post->id) }}" title="{{ $post->titulo }}">
+                                            <h3 class="card-title text-dark">{{ $post->titulo }}</h3>
+                                            <p class="card-text text-dark">{{ substr($post->descricao, 0, 300) . '...' }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

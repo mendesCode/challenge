@@ -1,0 +1,44 @@
+body {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+input:active, button:active, textarea:active {
+    outline: none;
+}
+
+.custom-alert {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 999;
+
+    margin-top: 5rem;
+    transform: translateX(100%);
+}
+
+.show-alert {
+    animation: showAlert .25s linear forwards;
+}
+
+.hide-alert {
+    animation: hideAlert 0.2s linear forwards;
+}
+
+@keyframes showAlert {
+    to {
+        transform: translateX(0);
+        margin-right: 1rem;
+    }
+}
+
+@keyframes hideAlert {
+    to {
+        transform: translateX(100%);
+        margin-right: 0;
+    }
+}
