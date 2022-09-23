@@ -4,7 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" id="post-form">
+            <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" id="post-form" data-role="create">
+                <div class="progress d-none mb-4">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 1%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
                 <div class="card">
                     <div class="card-header">Nova postagem</div>
 

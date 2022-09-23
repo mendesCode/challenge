@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Postagem;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostsController extends Controller
 {
@@ -43,6 +44,8 @@ class PostsController extends Controller
         $post->imagem = $imagePath;
 
         if ($post->save()) {
+            $request->session()->flash('success', 'A postagem foi cadastrada com sucesso.');
+
             return response([
                 'result' => true,
                 'message' => 'A postagem foi cadastrada com sucesso.',
@@ -59,6 +62,40 @@ class PostsController extends Controller
     public function edit(Postagem $post)
     {
         return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Postagem::find($id);
+
+        $data = $request->validate([
+            'titulo' => ['filled', 'max:120', Rule::unique('postagem')->ignore($post)],
+            'descricao' => 'filled',
+            'imagem' => 'mimes:jpg,jpeg,png,svg,bmp'
+        ]);
+
+        $post->fill($data);
+
+        if ($request->has('imagem')) {
+            $imagePath = $request->file('imagem')->store('public/posts');
+            $imagePath = substr($imagePath, (strrpos($imagePath, '/') + 1));
+
+            $post->imagem = $imagePath;
+        }
+
+        if ($post->save()) {
+            $request->session()->flash('success', 'A postagem foi atualizada com sucesso.');
+
+            return response([
+                'result' => true,
+                'post' => $post
+            ], 200);
+        }
+
+        return response([
+            'result' => false,
+            'message' => 'Não foi possível atualizar a postagem. Por favor, tente novamente.'
+        ], 422);
     }
 
     public function publish($id)

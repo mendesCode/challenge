@@ -9,8 +9,8 @@ const showAlert = (message, color) => {
     alert.querySelector('span.alert-text').innerHTML = message;
 };
 
-const hideAlert = () => {
-    const alert = document.querySelector('#alert');
+const hideAlert = (button) => {
+    const alert = button.closest('div.alert');
 
     alert.classList.add('hide-alert');
     alert.classList.remove('show-alert');
@@ -27,7 +27,7 @@ const displayErrors = errors => {
 };
 
 const clearErrors = () => {
-    document.querySelectorAll('input.is-invalid').forEach(input => {
+    document.querySelectorAll('.is-invalid').forEach(input => {
         input.classList.remove('is-invalid');
         const div = input.nextElementSibling;
 

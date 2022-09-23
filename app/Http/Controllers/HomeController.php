@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Postagem as ModelPostagem;
+use App\Postagem;
 
 class HomeController extends Controller
 {
@@ -22,7 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $array['postagens'] = ModelPostagem::get();
+        $array['postagens'] = Postagem::orderBy('updated_at', 'desc')->get();
 
         return view('home', $array);
     }

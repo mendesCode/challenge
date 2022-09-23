@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">{{ $post->descricao }}</div>
+                        <div class="col-md-12">{!! nl2br($post->descricao) !!}</div>
                     </div>
                 </div>
             </div>

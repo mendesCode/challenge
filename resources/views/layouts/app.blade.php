@@ -26,7 +26,7 @@
     <div id="app">
         <div id="alert" class="alert custom-alert" role="alert">
             <span class="alert-text"></span>
-            <button type="button" class="close d-block ml-4" onclick="hideAlert()">
+            <button type="button" class="close d-block ml-4" onclick="hideAlert(this)">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -91,6 +91,30 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger fade show" role="alert">
+                                <span class="alert-text">{{ session('error') }}</span>
+                                <button type="button" class="close d-block ml-4" onclick="this.closest('div.alert').remove()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
+                        @if (session()->has('success'))
+                            <div class="alert alert-success fade show" role="alert">
+                                <span class="alert-text">{{ session('success') }}</span>
+                                <button type="button" class="close d-block ml-4" onclick="this.closest('div.alert').remove()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             @yield('content')
         </main>
     </div>
