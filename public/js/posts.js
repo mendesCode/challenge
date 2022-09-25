@@ -16,8 +16,7 @@ const progressStart = (progressBar) => {
         value += Math.floor(Math.random() * 10) + 8;
 
         if (value >= 100) {
-            clearInterval(intervalId);
-            console.log(intervalId);
+            value = 99;
         }
 
         innerBar.style.width = value + '%';
