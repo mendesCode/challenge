@@ -11,6 +11,10 @@ input:active, button:active, textarea:active {
     outline: none;
 }
 
+.custom-progress-bar {
+    transition: width .4s linear;
+}
+
 .custom-alert {
     position: fixed;
     top: 0;

@@ -7,9 +7,9 @@ const progressStart = (progressBar) => {
     progressBar.classList.remove('d-none');
     const innerBar = progressBar.querySelector('div.progress-bar');
 
-    innerBar.style.width = '15%';
-    innerBar.setAttribute('aria-valuenow', '15');
-    innerBar.innerHTML = '15%';
+    innerBar.style.width = '10%';
+    innerBar.setAttribute('aria-valuenow', '10');
+    innerBar.innerHTML = '10%';
 
     intervalId = setInterval(() => {
         let value = +innerBar.getAttribute('aria-valuenow');
@@ -22,7 +22,7 @@ const progressStart = (progressBar) => {
         innerBar.style.width = value + '%';
         innerBar.setAttribute('aria-valuenow', value);
         innerBar.innerHTML = value + '%';
-    }, 300);
+    }, 100);
 };
 
 const progressFinish = (progressBar) => {
